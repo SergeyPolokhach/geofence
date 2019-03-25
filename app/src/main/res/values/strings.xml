@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">GeoFence</string>
+    <string name="sign_in">Sign In</string>
+    <string name="google">Google</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="hint_email">test@gmail.com</string>
+    <string name="hint_password">Qwerty1!</string>
+    <string name="permission_denied">To continue (using the app) provide permission to location data</string>
+    <string name="allow">Allow</string>
+    <string name="gps">GPS</string>
+    <string name="enable_gps">Please allow the app to share your location in the settings for your device.</string>
+    <string name="track_location_notification">Geofence is tracking your location</string>
+    <string name="track_my_location">Track my location</string>
+    <string name="transition_enter">You entered the geofence</string>
+    <string name="transition_exit">You exited of geofence</string>
+    <string name="transition_unknown">Unknown transition</string>
+    <string name="transition_lat_lng">LatLng(%f, %f)</string>
+    <string name="empty_messages">You have no messages)))</string>
+    <string name="show_chat_screen">Show chat screen</string>
+
+    <!--errors-->
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="server_error">Server error</string>
+</resources>

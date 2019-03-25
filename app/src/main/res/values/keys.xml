@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--google-->
+    <string name="google_plus_server_client_id">983869292557-jubtejnct912k162ao8q9hp7f9uleblo.apps.googleusercontent.com"</string>
+
+    <!--android geo-->
+    <string name="google_android_geo_key">AIzaSyCDa30IztV9ofospsTZy4JJ1LHecR7ziF0</string>
+
+</resources>

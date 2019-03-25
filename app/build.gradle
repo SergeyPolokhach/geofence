@@ -1,0 +1,135 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+apply from: 'detekt.gradle'
+
+apply from: 'versions.gradle'
+
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion as Integer
+    buildToolsVersion rootProject.ext.buildToolsVersion as String
+
+    defaultConfig {
+        applicationId "com.polohach.geofence.example"
+        minSdkVersion rootProject.ext.minSdkVersion as Integer
+        targetSdkVersion rootProject.ext.targetSdkVersion as Integer
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    println("Debug Build number $buildNoDevelop")
+    println("Prod Build number $buildNoProd")
+    println("Build Git Hash $buildGitHash")
+
+    signingConfigs {
+        debug {
+            storeFile file("./debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+    }
+    buildTypes {
+        all {
+            buildConfigField "String", "GIT_HASH", "\"$buildGitHash\""
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "SECURE_PREF_NAME", '"gf_prefs.xml"'
+            buildConfigField "String", "SECURE_PREF_PASSWORD", '"qwerty123"'
+        }
+
+        debug {
+            minifyEnabled false
+            debuggable true
+            signingConfig signingConfigs.debug
+            versionNameSuffix "." + buildNoDevelop + " Dev_" + buildGitHash
+        }
+        stage {
+            minifyEnabled false
+            debuggable true
+            signingConfig signingConfigs.debug
+            versionNameSuffix "." + buildNoDevelop + " Stage_" + buildGitHash
+        }
+        release {
+            minifyEnabled true
+            debuggable false
+            versionNameSuffix "." + buildNoProd
+        }
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Support
+    implementation supportDependencies.kotlin
+    implementation supportDependencies.appCompat
+    implementation supportDependencies.recyclerView
+    implementation supportDependencies.lifecycleExtension
+    implementation supportDependencies.design
+    implementation supportDependencies.multyDex
+
+    // Bootstrap
+    implementation bootstrapDependencies.core
+    implementation bootstrapDependencies.validators
+    implementation bootstrapDependencies.ext
+    implementation bootstrapDependencies.permission
+
+    // RxJava
+    implementation rxJavaDependencies.rxJava2
+
+    // Firebase
+    implementation firebaseDependencies.auth
+    implementation firebaseDependencies.core
+    implementation firebaseDependencies.database
+    implementation firebaseDependencies.servicesAuth
+
+    // Retrofit
+    implementation retrofitDependencies.converter
+    implementation retrofitDependencies.retrofit
+    implementation retrofitDependencies.adapter
+
+    // Jackson
+    implementation jacksonDependencies.interceptor
+    implementation jacksonDependencies.annotations
+    implementation jacksonDependencies.databind
+    implementation jacksonDependencies.core
+    implementation jacksonDependencies.joda
+
+    // Rx Android
+    implementation rxAndroidDependencies.rxAndroid
+
+    // Google Places
+    implementation googleDependencies.places
+    implementation googleDependencies.location
+
+    // Secure preferences
+    implementation securePreferencesDependencies.securePreferences
+
+    // LoggingInterceptor
+    implementation('com.github.ihsanbal:LoggingInterceptor:3.0.0') {
+        exclude group: 'org.json', module: 'json'
+    }
+}
+apply plugin: 'com.google.gms.google-services'

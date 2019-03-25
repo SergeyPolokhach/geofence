@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dlSettings"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/left_drawer"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_gravity="start"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:id="@+id/tvUserUid"
+            style="@style/LargeBlackTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="16dp"
+            android:padding="6dp"
+            tools:text="UserUid" />
+
+        <TextView
+            android:id="@+id/tvUserEmail"
+            style="@style/LargeBlackTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvUserUid"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:padding="6dp"
+            tools:text="UserEmail" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/swTrackMyLocation"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_below="@id/tvUserEmail"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:padding="6dp"
+            android:text="@string/track_my_location" />
+
+        <Button
+            android:id="@+id/bShowChat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/swTrackMyLocation"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:padding="6dp"
+            android:text="@string/show_chat_screen" />
+
+        <Button
+            android:id="@+id/bSignOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bSignIn"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="36dp"
+            android:text="@string/sign_out" />
+
+    </RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

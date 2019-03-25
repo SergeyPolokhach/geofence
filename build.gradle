@@ -1,0 +1,120 @@
+buildscript {
+    ext.kotlin_version = '1.3.21'
+    ext.build_gradle_version = '3.3.2'
+    ext.google_service_version = '4.0.2'
+    ext.detekt_version = "1.0.0.RC7-3"
+
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url 'https://jitpack.io' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath "com.google.gms:google-services:$google_service_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "gradle.plugin.io.gitlab.arturbosch:detekt-gradle-plugin:$detekt_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    compileSdkVersion = 28
+    minSdkVersion = 21
+    buildToolsVersion = '28.0.3'
+    targetSdkVersion = 28
+
+    archVersion = "2.0.0"
+    supportVersion = "1.0.0"
+    multyDexVersion = "2.0.0"
+
+    lifeCycleVersion = '1.0.0'
+
+    rxJava2Version = '2.1.16'
+
+    bootstrapVersion = "0.1.9"
+
+    stethoVersoin = "1.5.0"
+
+    googleVersion = '15.0.1'
+
+    firebaseVersion = '16.0.5'
+    firebaseServiceVersion = '16.0.1'
+
+    rxAndroidVersion = '2.0.2'
+
+    securePreferencesVersion = '0.1.4'
+
+    retrofit_version = '2.3.0'
+
+    jackson_version = '2.9.3'
+
+    supportDependencies = [
+            kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            appCompat         : "androidx.appcompat:appcompat:$supportVersion",
+            recyclerView      : "androidx.recyclerview:recyclerview:$supportVersion",
+            design            : "com.google.android.material:material:$supportVersion",
+            lifecycleExtension: "androidx.lifecycle:lifecycle-extensions:$archVersion",
+            multyDex          : "androidx.multidex:multidex:$multyDexVersion",
+    ]
+
+    rxJavaDependencies = [
+            rxJava2: "io.reactivex.rxjava2:rxjava:$rxJava2Version"
+    ]
+
+    rxAndroidDependencies = [
+            rxAndroid: "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    ]
+
+    securePreferencesDependencies = [
+            securePreferences: "com.scottyab:secure-preferences-lib:$securePreferencesVersion"
+    ]
+
+    bootstrapDependencies = [
+            core      : "com.cleveroad.bootstrap:kotlin-core:$bootstrapVersion",
+            validators: "com.cleveroad.bootstrap:kotlin-validators:$bootstrapVersion",
+            ext       : "com.cleveroad.bootstrap:kotlin-ext:$bootstrapVersion",
+            permission: "com.cleveroad.bootstrap:kotlin-permissionrequest:$bootstrapVersion"
+    ]
+
+    googleDependencies = [
+            places  : "com.google.android.gms:play-services-places:$googleVersion",
+            location: "com.google.android.gms:play-services-location:$googleVersion"
+    ]
+
+    firebaseDependencies = [
+            auth        : "com.google.firebase:firebase-auth:$firebaseVersion",
+            core        : "com.google.firebase:firebase-core:$firebaseVersion",
+            database    : "com.google.firebase:firebase-database:$firebaseVersion",
+            servicesAuth: "com.google.android.gms:play-services-auth:$firebaseServiceVersion"
+    ]
+
+    retrofitDependencies = [
+            converter: "com.squareup.retrofit2:converter-jackson:$retrofit_version",
+            adapter  : "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version",
+            retrofit : "com.squareup.retrofit2:retrofit:$retrofit_version"
+    ]
+
+    jacksonDependencies = [
+            joda       : "com.fasterxml.jackson.datatype:jackson-datatype-joda:$jackson_version",
+            annotations: "com.fasterxml.jackson.core:jackson-annotations:$jackson_version",
+            databind   : "com.fasterxml.jackson.core:jackson-databind:$jackson_version",
+            core       : "com.fasterxml.jackson.core:jackson-core:$jackson_version",
+            interceptor: 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    ]
+}
+
+apply plugin: "io.gitlab.arturbosch.detekt"
